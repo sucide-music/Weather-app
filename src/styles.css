@@ -1,0 +1,81 @@
+body {
+  font-family: "Open Sans Condensed", sans-serif;
+  color: white;
+  width: 500px;
+  min-width: 500px;
+  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/007/998/original/undraw_nature_on_screen_xkli.png?1619516542);
+  background-size: 1000px;
+  background-repeat: no-repeat;
+}
+h1,
+h2 {
+  text-align: center;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  border-radius: 15px;
+  color: #171254;
+  background-color: #e9e6eb;
+  border: 1px solid #171254;
+  margin: 5px;
+  transition: all 200ms ease-in-out;
+}
+
+button:hover {
+  background: #171254;
+  color: #e9e6eb;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: underline;
+  color: inherit;
+}
+.container {
+  background: linear-gradient(rgb(21, 13, 107) 1.1%, rgb(188, 16, 80) 130.5%);
+  max-width: 1500px;
+  margin: 15px 100px;
+  padding: 50px;
+  border-radius: 15px;
+}
+.current-temperature {
+  font-size: 100px;
+}
+.current-weather {
+  font-size: 50px;
+  position: relative;
+  top: 20px;
+}
+.temperature-today {
+  font-size: 30px;
+  position: relative;
+  top: 37px;
+  right: 3px;
+}
+.future-forecast {
+  font-size: 28px;
+}
+.extra-info {
+  font-size: 30px;
+}
+.author {
+  text-align: right;
+  padding-top: 20px;
+}
+.city-search {
+  border: 2px solid white;
+  border-radius: 25px;
+  margin: 2px;
+  background-color: #e9e6eb;
+  color: #171254;
+}
+.icon-body {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 2px;
+}
