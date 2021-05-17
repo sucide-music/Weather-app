@@ -1,3 +1,27 @@
+function defaultCity(city) {
+  let unit = "units=metric";
+  let apiKey = "b9d5278f163570dd5cc1638d250bbe97";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&${unit}`;
+  axios.get(apiUrl).then(showWeather);
+
+  function showWeather(response) {
+    let h1 = document.querySelector("h1");
+    h1.innerHTML = response.data.name;
+    let currentTemp = document.querySelector("#current-temp");
+    let tempNow = Math.round(response.data.main.temp);
+    currentTemp.innerHTML = `${tempNow}° C`;
+    let wind = document.querySelector("#wind");
+    wind.innerHTML = Math.round(response.data.wind.speed);
+    let humidity = document.querySelector("#humidity");
+    humidity.innerHTML = response.data.main.humidity;
+    let description = document.querySelector("#description");
+    description.innerHTML = response.data.weather[0].main;
+    let highest = document.querySelector("#highest");
+    highest.innerHTML = Math.round(response.data.main.temp_max);
+    let lowest = document.querySelector("#lowest");
+    lowest.innerHTML = Math.round(response.data.main.temp_min);
+  }
+}
 function showCity(event) {
   event.preventDefault();
 
@@ -102,3 +126,5 @@ celsiusButton.addEventListener("click", showCelsius);
 
 let locationButton = document.querySelector("#current-location-button");
 locationButton.addEventListener("click", getPosition);
+
+defaultCity("London");
