@@ -20,6 +20,11 @@ function defaultCity(city) {
     highest.innerHTML = Math.round(response.data.main.temp_max);
     let lowest = document.querySelector("#lowest");
     lowest.innerHTML = Math.round(response.data.main.temp_min);
+    let iconElement = document.querySelector("#icon");
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
   }
 }
 function showCity(event) {
@@ -48,6 +53,11 @@ function showCity(event) {
     highest.innerHTML = Math.round(response.data.main.temp_max);
     let lowest = document.querySelector("#lowest");
     lowest.innerHTML = Math.round(response.data.main.temp_min);
+    let iconElement = document.querySelector("#icon");
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
   }
 
   if (city.value === "") {
