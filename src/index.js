@@ -17,14 +17,19 @@ function defaultCity(city) {
     let description = document.querySelector("#description");
     description.innerHTML = response.data.weather[0].main;
     let highest = document.querySelector("#highest");
-    highest.innerHTML = Math.round(response.data.main.temp_max);
+    highestTemp = Math.round(response.data.main.temp_max);
+    highest.innerHTML = `${highestTemp}° C`;
     let lowest = document.querySelector("#lowest");
-    lowest.innerHTML = Math.round(response.data.main.temp_min);
+    lowestTemp = Math.round(response.data.main.temp_min);
+    lowest.innerHTML = `${lowestTemp}° C`;
     let iconElement = document.querySelector("#icon");
     iconElement.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+    celsiusTemperature = response.data.main.temp;
+    highestTemperature = response.data.main.temp_max;
+    lowestTemperature = response.data.main.temp_min;
   }
 }
 function showCity(event) {
@@ -50,14 +55,19 @@ function showCity(event) {
     let description = document.querySelector("#description");
     description.innerHTML = response.data.weather[0].main;
     let highest = document.querySelector("#highest");
-    highest.innerHTML = Math.round(response.data.main.temp_max);
+    highestTemp = Math.round(response.data.main.temp_max);
+    highest.innerHTML = `${highestTemp}° C`;
     let lowest = document.querySelector("#lowest");
-    lowest.innerHTML = Math.round(response.data.main.temp_min);
+    lowestTemp = Math.round(response.data.main.temp_min);
+    lowest.innerHTML = `${lowestTemp}° C`;
     let iconElement = document.querySelector("#icon");
     iconElement.setAttribute(
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+    celsiusTemperature = response.data.main.temp;
+    highestTemperature = response.data.main.temp_max;
+    lowestTemperature = response.data.main.temp_min;
   }
 
   if (city.value === "") {
@@ -66,17 +76,24 @@ function showCity(event) {
 }
 function showFahrenheit(event) {
   event.preventDefault();
-  let fahTemp = document.querySelector("div.current-temperature");
-  let fahTempToday = document.querySelector("div.temperature-today");
-  fahTemp.innerHTML = "73° F";
-  fahTempToday.innerHTML = "82° F<br /> 55° F";
+  let fahTemp = Math.round((celsiusTemperature * 9) / 5 + 32);
+  let temperatureElement = document.querySelector("div.current-temperature");
+  temperatureElement.innerHTML = `${fahTemp}° F`;
+  let highFahTemp = Math.round((highestTemperature * 9) / 5 + 32);
+  let lowFahTemp = Math.round((lowestTemperature * 9) / 5 + 32);
+  let highestTempElement = document.querySelector("#highest");
+  let lowestTempElement = document.querySelector("#lowest");
+  highestTempElement.innerHTML = `${highFahTemp}° F`;
+  lowestTempElement.innerHTML = `${lowFahTemp}° F`;
 }
 function showCelsius(event) {
   event.preventDefault();
   let celTemp = document.querySelector("div.current-temperature");
-  let celtTempToday = document.querySelector("div.temperature-today");
-  celTemp.innerHTML = "23°C";
-  celtTempToday.innerHTML = "28° C<br />13° C";
+  let highCelTemp = document.querySelector("#highest");
+  let lowCelTemp = document.querySelector("#lowest");
+  celTemp.innerHTML = `${Math.round(celsiusTemperature)}° C`;
+  highCelTemp.innerHTML = `${Math.round(highestTemperature)}° C`;
+  lowCelTemp.innerHTML = `${Math.round(lowestTemperature)}° C`;
 }
 
 function showPosition(position) {
@@ -137,4 +154,7 @@ celsiusButton.addEventListener("click", showCelsius);
 let locationButton = document.querySelector("#current-location-button");
 locationButton.addEventListener("click", getPosition);
 
+let celsiusTemperature = null;
+let highestTemperature = null;
+let lowestTemperature = null;
 defaultCity("London");

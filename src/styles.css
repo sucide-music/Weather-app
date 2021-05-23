@@ -79,3 +79,7 @@ a:hover {
   margin: 0 auto;
   padding: 10px 2px;
 }
+
+.icon {
+  display: inline;
+}
