@@ -117,10 +117,21 @@ function showPosition(position) {
     humidity.innerHTML = response.data.main.humidity;
     let description = document.querySelector("#description");
     description.innerHTML = response.data.weather[0].main;
-    let highest = document.querySelector("#highest");
-    highest.innerHTML = Math.round(response.data.main.temp_max);
-    let lowest = document.querySelector("#lowest");
     lowest.innerHTML = Math.round(response.data.main.temp_min);
+    let highest = document.querySelector("#highest");
+    highestTemp = Math.round(response.data.main.temp_max);
+    highest.innerHTML = `${highestTemp}° C`;
+    let lowest = document.querySelector("#lowest");
+    lowestTemp = Math.round(response.data.main.temp_min);
+    lowest.innerHTML = `${lowestTemp}° C`;
+    let iconElement = document.querySelector("#icon");
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+    celsiusTemperature = response.data.main.temp;
+    highestTemperature = response.data.main.temp_max;
+    lowestTemperature = response.data.main.temp_min;
   }
 }
 
