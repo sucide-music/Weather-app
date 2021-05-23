@@ -80,6 +80,9 @@ a:hover {
   padding: 10px 2px;
 }
 
-.icon {
+.weather-icon {
   display: inline;
+  position: relative;
+  top: 15px;
+  left: -15px;
 }
