@@ -1,3 +1,21 @@
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row seven-days">`;
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+      ${day}
+      <br />
+      <i class="fas fa-sun icon-body"></i>25° C
+    </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function defaultCity(city) {
   let unit = "units=metric";
   let apiKey = "b9d5278f163570dd5cc1638d250bbe97";
@@ -169,3 +187,4 @@ let celsiusTemperature = null;
 let highestTemperature = null;
 let lowestTemperature = null;
 defaultCity("London");
+displayForecast();
