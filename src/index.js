@@ -1,4 +1,5 @@
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row seven-days">`;
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
@@ -15,6 +16,14 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
+function getForecast(coordinates) {
+  let apiKey = "b9d5278f163570dd5cc1638d250bbe97";
+  let unit = "units=metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&${unit}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showWeather(response) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
@@ -41,6 +50,8 @@ function showWeather(response) {
   celsiusTemperature = response.data.main.temp;
   highestTemperature = response.data.main.temp_max;
   lowestTemperature = response.data.main.temp_min;
+
+  getForecast(response.data.coord);
 }
 
 function defaultCity(city) {
@@ -129,5 +140,6 @@ locationButton.addEventListener("click", getPosition);
 let celsiusTemperature = null;
 let highestTemperature = null;
 let lowestTemperature = null;
+
 defaultCity("London");
-displayForecast();
+//displayForecast();
