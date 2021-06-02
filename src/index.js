@@ -1,16 +1,26 @@
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+  return day;
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row seven-days">`;
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
-      ${day}
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 7) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
+      ${formatDay(forecastDay.dt)}
       <br />
-      <i class="fas fa-sun icon-body"></i>25° C
+      <img src="http://openweathermap.org/img/wn/${
+        forecastDay.weather[0].icon
+      }@2x.png" width="27" />${Math.round(forecastDay.temp.day)}° C
     </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
