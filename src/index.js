@@ -16,13 +16,14 @@ function displayForecast(response) {
         `<div class="col">
       ${formatDay(forecastDay.dt)}
       <br />
-      <img src="http://openweathermap.org/img/wn/${
+      <img class="icon" src="http://openweathermap.org/img/wn/${
         forecastDay.weather[0].icon
-      }@2x.png" width="27" />${Math.round(forecastDay.temp.day)}° C
+      }@2x.png" width="27" /><span id="forecastTemp">${Math.round(
+          forecastDay.temp.day
+        )}° C</span>
     </div>`;
     }
   });
-
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
@@ -122,7 +123,15 @@ function getPosition(event) {
 }
 
 let now = new Date();
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 let day = days[now.getDay()];
 let hours = now.getHours();
 let minutes = now.getMinutes();
@@ -152,4 +161,3 @@ let highestTemperature = null;
 let lowestTemperature = null;
 
 defaultCity("London");
-//displayForecast();
