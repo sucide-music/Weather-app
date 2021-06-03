@@ -91,3 +91,7 @@ a:hover {
   display: block;
   margin: 0 auto;
 }
+
+.forecast {
+  text-align: center;
+}
